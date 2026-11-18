@@ -36,28 +36,11 @@ if st.button("🚀 Mulai Tulis Novel (Sekali Klik)"):
     else:
         genai.configure(api_key=api_key)
         
+        # MENGGUNAKAN MODEL YANG DIMINTA OLEH GOOGLE
+        model = genai.GenerativeModel('gemini-3.8-flash')
+        
         progress_bar = st.progress(0)
         status_text = st.empty()
-        
-        # --- SISTEM DETEKSI MODEL OTOMATIS ---
-        try:
-            status_text.info("Mencari model AI yang tersedia untuk API Key ini...")
-            model_list = genai.list_models()
-            tersedia = [m.name.replace('models/', '') for m in model_list if 'generateContent' in m.supported_generation_methods]
-            
-            if not tersedia:
-                st.error("API Key valid, tetapi tidak memiliki akses ke model teks Gemini.")
-                st.stop()
-                
-            # Prioritaskan flash, jika tidak ada pakai model teks pertama yang tersedia
-            nama_model_terpilih = next((m for m in tersedia if '1.5-flash' in m), tersedia[0])
-            model = genai.GenerativeModel(nama_model_terpilih)
-            st.success(f"Berhasil terhubung secara otomatis ke: {nama_model_terpilih}")
-            time.sleep(2)
-        except Exception as e:
-            st.error(f"Gagal membaca API Key: {e}")
-            st.stop()
-        # ------------------------------------
         
         # Membersihkan baris kosong dari outline
         daftar_bab = [baris.strip() for baris in outline_input.split('\n') if baris.strip()]
