@@ -36,7 +36,7 @@ if st.button("🚀 Mulai Tulis Novel (Sekali Klik)"):
         st.error("API Key wajib diisi untuk mulai menulis!")
     else:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = google-generativeai>=0.7.0
         
         # Membersihkan baris kosong dari outline
         daftar_bab = [baris.strip() for baris in outline_input.split('\n') if baris.strip()]
