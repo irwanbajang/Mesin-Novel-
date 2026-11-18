@@ -62,7 +62,7 @@ if st.button("🚀 Mulai Tulis (Sekali Klik)"):
                 novel_lengkap += bab_utuh
                 
                 status_text.success(f"Bab {nomor_bab} selesai.")
-                time.sleep(5) # Jeda istirahat agar mesin tidak kepanasan (rate limit)
+                time.sleep(20) # Jeda istirahat agar mesin tidak kepanasan (rate limit)
                 
             except Exception as e:
                 st.error(f"Mesin tersendat di Bab {nomor_bab}: {e}")
